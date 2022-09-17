@@ -41,6 +41,14 @@ body {
     height: 30%;
 }
 
+#display #previous, #current {
+    height: 80px;
+    font-size: 1.5rem;
+    text-align: end;
+    padding: 5px;
+    box-shadow: inset 4px 3px darkblue;
+}
+
 #buttons {
     flex-direction: row;
     flex-wrap: wrap;
@@ -49,9 +57,16 @@ body {
 
 .button {
     width: fit-content;
-    height: 40px;
+    height: fit-content;
+    font-size: 20px;
+    font-weight: 600;
     padding: 10px;
     margin: 10px;
     text-align: center;
     border: 2px solid black;
+    border-radius: 5px;
+}
+
+.button:hover {
+    cursor: pointer;
 }
