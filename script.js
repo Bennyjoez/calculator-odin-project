@@ -27,5 +27,5 @@ function operate(operator, a, b) {
 }; 
 
 // All clear button 
-const allClear = document.querySelector('#clear')
-console.log(allClear);
+let allClear = document.getElementById('clear')
+console.log(allClear.innerText);
