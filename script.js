@@ -30,10 +30,20 @@ function operate(operator, a, b) {
 let allClear = document.getElementById('clear')
 const previousDisplay = document.querySelector('#previous')
 const currentDisplay = document.querySelector('#current')
-console.log(currentDisplay, previousDisplay);
+const numberButtons = document.querySelectorAll('.numbers')
 allClear.addEventListener('click', clearOutput)
 
 function clearOutput() {
     previousDisplay.value = '0'
     currentDisplay.value = '0'
+}
+
+numberButtons.forEach(button => button.addEventListener('click', postInput));
+
+function postInput(e) {
+    if(currentDisplay.value === '0') {
+        currentDisplay.value = e.target.textContent;
+    } else {
+        currentDisplay.value += e.target.textContent;
+    }
 }
