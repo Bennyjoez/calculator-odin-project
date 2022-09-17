@@ -24,21 +24,23 @@ body {
     align-items: center;
 }
 
-.container, #display, #buttons {
+.container, #display, #buttons{
     display: flex;
-    flex-direction: column;
 }
 
 .container{
-    height: 80%;
-    width: 70%;
+    flex-direction: column;
+    height: 80vh;
+    width: minmax(500px, 800px);
     padding: 3px;
     border-radius: 5px;
     border: 3px solid black;
+    box-shadow: 0 0 5px 5px;
 }
 
 #display {
     height: 30%;
+    flex-direction: column;
 }
 
 #display #previous, #current {
@@ -46,25 +48,32 @@ body {
     font-size: 1.5rem;
     text-align: end;
     padding: 5px;
-    box-shadow: inset 4px 3px darkblue;
+
 }
 
 #buttons {
     flex-direction: row;
     flex-wrap: wrap;
-    height: 70%;
+    height: 700px;
+    width: 658px;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid black;
 }
 
 .button {
-    width: fit-content;
-    height: fit-content;
-    font-size: 20px;
+    min-width: 70px;
+    height: 70px;
+    font-size: 50px;
     font-weight: 600;
-    padding: 10px;
-    margin: 10px;
+    padding: 8px 20px;
+    margin: 20px;
     text-align: center;
     border: 2px solid black;
     border-radius: 5px;
+    background-color: aquamarine;
+    box-shadow: 0 0 3px 3px;
 }
 
 .button:hover {

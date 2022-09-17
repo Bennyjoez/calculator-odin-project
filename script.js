@@ -16,12 +16,13 @@ function divide(a, b) {
 
 function operate(operator, a, b) {
     if(operator === 'add') {
-        add(a, b)
+        add(a, b);
     } else if (operator === 'subtract') {
-        subtract(a, b)
+        subtract(a, b);
     } else if (operator === 'multiply') {
-        mutiply(a, b) 
+        mutiply(a, b);
     } else if (operator === 'divide') {
-        divide(a, b)
+        divide(a, b);
     }
-};
+}; 
+
