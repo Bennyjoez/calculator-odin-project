@@ -1,3 +1,9 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -10,3 +16,42 @@ input[type=number] {
     -moz-appearance: textfield;
 }
 
+body {
+    background-color: beige;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container, #display, #buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+.container{
+    height: 80%;
+    width: 70%;
+    padding: 3px;
+    border-radius: 5px;
+    border: 3px solid black;
+}
+
+#display {
+    height: 30%;
+}
+
+#buttons {
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 70%;
+}
+
+.button {
+    width: fit-content;
+    height: 40px;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+    border: 2px solid black;
+}
