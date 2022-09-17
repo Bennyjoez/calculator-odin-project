@@ -26,3 +26,6 @@ function operate(operator, a, b) {
     }
 }; 
 
+// All clear button 
+const allClear = document.querySelector('#clear')
+console.log(allClear);
