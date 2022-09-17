@@ -28,4 +28,12 @@ function operate(operator, a, b) {
 
 // All clear button 
 let allClear = document.getElementById('clear')
-console.log(allClear.innerText);
+const previousDisplay = document.querySelector('#previous')
+const currentDisplay = document.querySelector('#current')
+console.log(currentDisplay, previousDisplay);
+allClear.addEventListener('click', clearOutput)
+
+function clearOutput() {
+    previousDisplay.value = '0'
+    currentDisplay.value = '0'
+}
