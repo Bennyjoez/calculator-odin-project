@@ -27,21 +27,32 @@ function operate(operator, a, b) {
 }; 
 
 // All clear button 
-let allClear = document.getElementById('clear')
-const previousDisplay = document.querySelector('#previous')
-const currentDisplay = document.querySelector('#current')
-const numberButtons = document.querySelectorAll('.numbers')
-allClear.addEventListener('click', clearOutput)
+const allClear = document.getElementById('clear');
+const deleteBtn = document.querySelector('#delete');
+const previousDisplay = document.querySelector('#previous');
+const currentDisplay = document.querySelector('#current');
+const numberButtons = document.querySelectorAll('.numbers');
+
+allClear.addEventListener('click', clearOutput);
+deleteBtn.addEventListener('click', deleteEntry)
 
 function clearOutput() {
     previousDisplay.value = '0'
     currentDisplay.value = '0'
 }
 
+function deleteEntry() {
+    let currentDisplayArr = currentDisplay.value.split('')
+    currentDisplay.value = currentDisplayArr.slice(0, -1).join('');
+    if(currentDisplay.value === '') {
+        currentDisplay.value = '0'
+    }
+}
+
 numberButtons.forEach(button => button.addEventListener('click', postInput));
 
 function postInput(e) {
-    if(currentDisplay.value === '0') {
+    if(currentDisplay.value === '0' || currentDisplay.value === '00') {
         currentDisplay.value = e.target.textContent;
     } else {
         currentDisplay.value += e.target.textContent;
