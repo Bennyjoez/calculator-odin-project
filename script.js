@@ -1,31 +1,3 @@
-function add(a, b) {
-    return a + b;
-}
-
-function subtract(a, b) {
-    return a - b;
-}
-
-function mutiply(a, b) {
-    return a * b;
-} 
-
-function divide(a, b) {
-    return a / b;
-}
-
-function operate(operator, a, b) {
-    if(operator === 'add') {
-        return add(a, b);
-    } else if (operator === 'subtract') {
-        return subtract(a, b);
-    } else if (operator === 'multiply') {
-        return mutiply(a, b);
-    } else if (operator === 'divide') {
-        return divide(a, b);
-    }
-}; 
-
 // Button 
 const allClear = document.getElementById('clear');
 const deleteBtn = document.querySelector('#delete');
@@ -46,61 +18,88 @@ addBtn.addEventListener('click', setOperator);
 subtractBtn.addEventListener('click', setOperator);
 divideBtn.addEventListener('click', setOperator);
 multiplyBtn.addEventListener('click', setOperator);
-equalsBtn.addEventListener('click', output)
+equalsBtn.addEventListener('click', output);
+numberButtons.forEach(button => button.addEventListener('click', updateDisplay));
 
 let operator;
-let a = Number(previousDisplay.value);
-let b = Number(currentDisplay.value);
 
-function output() {
-    let operationResult = operate(operator, a, b);
-    console.log(operationResult);
-    currentDisplay.value = operationResult;
+function add(a, b) {
+    return a + b;
 }
-function setOperator() {
+function subtract(a, b) {
+    return a - b;
+}
+function multiply(a, b) {
+    return a * b;
+} 
+function divide(a, b) {
+    return a / b;
+}
+
+function operate(operator, a, b) {
+    if(b != '') {
+        if(operator === 'add') {
+            return add(a, b);
+        } else if (operator === 'subtract') {
+            return subtract(a, b);
+        } else if (operator === 'multiply') {
+            return multiply(a, b);
+        } else if (operator === 'divide') {
+            return divide(a, b);
+        }
+    } else {
+        alert(`Please enter a value to ${operator}`)
+    }
+}; 
+
+function setOperator(e) {
     if(this.textContent === '-') {
         operator = 'subtract';
-        updateDisplay();
+        updateDisplay(e);
     } else if(this.textContent === '+') {
         operator = 'add';
-        updateDisplay();
+        updateDisplay(e);
     } else if (this.textContent === 'x') {
         operator = 'multiply';
-        updateDisplay();
+        updateDisplay(e);
     } else if(this.textContent === '÷'){
         operator = 'divide';
-        updateDisplay();
+        updateDisplay(e);
     } else {
         console.log('Error');
     }
 }
-function updateDisplay() {
-    if(currentDisplay.value != '') {
-        previousDisplay.value = currentDisplay.value
+function updateDisplay(e) {
+    if(e.target.className === 'numbers button') {
+        if(currentDisplay.value === '0' || currentDisplay.value === '00' || currentDisplay.value === '') {
+            currentDisplay.value = e.target.textContent;
+        } else {
+            currentDisplay.value += e.target.textContent;
+        }
+    } else {
+        previousDisplay.value = currentDisplay.value 
         currentDisplay.value = ''
-        console.log(previousDisplay.value);
+
     }
 }
 
+// equals
+function output() {
+    let a = Number(previousDisplay.value);
+    let b = Number(currentDisplay.value);
+    let operationResult = operate(operator, a, b);
+    currentDisplay.value = operationResult;
+}
+// all clear
 function clearOutput() {
     previousDisplay.value = ''
     currentDisplay.value = ''
-    console.log(previousDisplay, currentDisplay);
 }
-
+// delete
 function deleteEntry() {
     let currentDisplayArr = currentDisplay.value.split('')
     currentDisplay.value = currentDisplayArr.slice(0, -1).join('');
 }
 
-numberButtons.forEach(button => button.addEventListener('click', updateCurrentDisplay));
-
-function updateCurrentDisplay(e) {
-    if(currentDisplay.value === '0' || currentDisplay.value === '00') {
-        currentDisplay.value = e.target.textContent;
-    } else {
-        currentDisplay.value += e.target.textContent;
-    }
-}
 
 
