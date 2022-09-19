@@ -47,8 +47,6 @@ divideBtn.addEventListener('click', setOperator);
 multiplyBtn.addEventListener('click', setOperator);
 
 
-
-
 function setOperator() {
     let operator;
     let a = Number(previousDisplay.value);
