@@ -26,9 +26,13 @@ function operate(operator, a, b) {
     }
 }; 
 
-// All clear button 
+// Button 
 const allClear = document.getElementById('clear');
 const deleteBtn = document.querySelector('#delete');
+const addBtn = document.querySelector('#add');
+const subtractBtn = document.querySelector('#subtract');
+const multiplyBtn = document.querySelector('#multiply');
+const divideBtn = document.querySelector('#divide');
 const previousDisplay = document.querySelector('#previous');
 const currentDisplay = document.querySelector('#current');
 const numberButtons = document.querySelectorAll('.numbers');
@@ -58,3 +62,5 @@ function postInput(e) {
         currentDisplay.value += e.target.textContent;
     }
 }
+
+
