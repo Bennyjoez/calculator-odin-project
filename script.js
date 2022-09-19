@@ -16,13 +16,13 @@ function divide(a, b) {
 
 function operate(operator, a, b) {
     if(operator === 'add') {
-        console.log(add(a, b))
+        return add(a, b);
     } else if (operator === 'subtract') {
-        subtract(a, b);
+        return subtract(a, b);
     } else if (operator === 'multiply') {
-        mutiply(a, b);
+        return mutiply(a, b);
     } else if (operator === 'divide') {
-        divide(a, b);
+        return divide(a, b);
     }
 }; 
 
@@ -41,7 +41,10 @@ const currentDisplay = document.querySelector('#current');
 // event listeners
 allClear.addEventListener('click', clearOutput);
 deleteBtn.addEventListener('click', deleteEntry);
-addBtn.addEventListener('click', setOperator)
+addBtn.addEventListener('click', setOperator);
+subtractBtn.addEventListener('click', setOperator);
+divideBtn.addEventListener('click', setOperator);
+multiplyBtn.addEventListener('click', setOperator);
 
 
 
