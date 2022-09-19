@@ -34,6 +34,7 @@ const subtractBtn = document.querySelector('#subtract');
 const multiplyBtn = document.querySelector('#multiply');
 const divideBtn = document.querySelector('#divide');
 const numberButtons = document.querySelectorAll('.numbers');
+const equalsBtn = document.querySelector('#equals')
 // displays
 const previousDisplay = document.querySelector('#previous');
 const currentDisplay = document.querySelector('#current');
@@ -45,44 +46,56 @@ addBtn.addEventListener('click', setOperator);
 subtractBtn.addEventListener('click', setOperator);
 divideBtn.addEventListener('click', setOperator);
 multiplyBtn.addEventListener('click', setOperator);
+equalsBtn.addEventListener('click', output)
 
+let operator;
+let a = Number(previousDisplay.value);
+let b = Number(currentDisplay.value);
 
+function output() {
+    let operationResult = operate(operator, a, b);
+    console.log(operationResult);
+    currentDisplay.value = operationResult;
+}
 function setOperator() {
-    let operator;
-    let a = Number(previousDisplay.value);
-    let b = Number(currentDisplay.value);
     if(this.textContent === '-') {
         operator = 'subtract';
-        operate(operator, a, b);
+        updateDisplay();
     } else if(this.textContent === '+') {
         operator = 'add';
-        operate(operator, a, b);
+        updateDisplay();
     } else if (this.textContent === 'x') {
         operator = 'multiply';
-        operate(operator, a, b);
+        updateDisplay();
     } else if(this.textContent === '÷'){
         operator = 'divide';
-        operate(operator, a, b);
+        updateDisplay();
     } else {
         console.log('Error');
     }
 }
+function updateDisplay() {
+    if(currentDisplay.value != '') {
+        previousDisplay.value = currentDisplay.value
+        currentDisplay.value = ''
+        console.log(previousDisplay.value);
+    }
+}
+
 function clearOutput() {
-    previousDisplay.value = '0'
-    currentDisplay.value = '0'
+    previousDisplay.value = ''
+    currentDisplay.value = ''
+    console.log(previousDisplay, currentDisplay);
 }
 
 function deleteEntry() {
     let currentDisplayArr = currentDisplay.value.split('')
     currentDisplay.value = currentDisplayArr.slice(0, -1).join('');
-    if(currentDisplay.value === '') {
-        currentDisplay.value = '0'
-    }
 }
 
-numberButtons.forEach(button => button.addEventListener('click', postInput));
+numberButtons.forEach(button => button.addEventListener('click', updateCurrentDisplay));
 
-function postInput(e) {
+function updateCurrentDisplay(e) {
     if(currentDisplay.value === '0' || currentDisplay.value === '00') {
         currentDisplay.value = e.target.textContent;
     } else {
