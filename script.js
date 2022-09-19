@@ -16,7 +16,7 @@ function divide(a, b) {
 
 function operate(operator, a, b) {
     if(operator === 'add') {
-        add(a, b);
+        console.log(add(a, b))
     } else if (operator === 'subtract') {
         subtract(a, b);
     } else if (operator === 'multiply') {
@@ -33,13 +33,39 @@ const addBtn = document.querySelector('#add');
 const subtractBtn = document.querySelector('#subtract');
 const multiplyBtn = document.querySelector('#multiply');
 const divideBtn = document.querySelector('#divide');
+const numberButtons = document.querySelectorAll('.numbers');
+// displays
 const previousDisplay = document.querySelector('#previous');
 const currentDisplay = document.querySelector('#current');
-const numberButtons = document.querySelectorAll('.numbers');
 
+// event listeners
 allClear.addEventListener('click', clearOutput);
-deleteBtn.addEventListener('click', deleteEntry)
+deleteBtn.addEventListener('click', deleteEntry);
+addBtn.addEventListener('click', setOperator)
 
+
+
+
+function setOperator() {
+    let operator;
+    let a = Number(previousDisplay.value);
+    let b = Number(currentDisplay.value);
+    if(this.textContent === '-') {
+        operator = 'subtract';
+        operate(operator, a, b);
+    } else if(this.textContent === '+') {
+        operator = 'add';
+        operate(operator, a, b);
+    } else if (this.textContent === 'x') {
+        operator = 'multiply';
+        operate(operator, a, b);
+    } else if(this.textContent === '÷'){
+        operator = 'divide';
+        operate(operator, a, b);
+    } else {
+        console.log('Error');
+    }
+}
 function clearOutput() {
     previousDisplay.value = '0'
     currentDisplay.value = '0'
