@@ -37,7 +37,8 @@ function divide(a, b) {
 }
 
 function operate(operator, a, b) {
-    if(b != '') {
+    if(b != '' && a != '' || b === 0) {
+        console.log(typeof a, typeof b); // check here
         if(operator === 'add') {
             return add(a, b);
         } else if (operator === 'subtract') {
@@ -75,18 +76,20 @@ function updateDisplay(e) {
             currentDisplay.value = e.target.textContent;
         } else {
             currentDisplay.value += e.target.textContent;
+            console.log(currentDisplay);
         }
     } else {
-        previousDisplay.value = currentDisplay.value 
-        currentDisplay.value = ''
-
+        if(currentDisplay.value != '') {
+            previousDisplay.value = currentDisplay.value 
+            currentDisplay.value = ''
+        }
     }
 }
 
 // equals
 function output() {
-    let a = Number(previousDisplay.value);
-    let b = Number(currentDisplay.value);
+    let a = parseFloat(previousDisplay.value);
+    let b = parseFloat(currentDisplay.value);
     let operationResult = operate(operator, a, b);
     currentDisplay.value = operationResult;
 }
