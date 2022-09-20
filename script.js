@@ -79,8 +79,10 @@ function updateDisplay(e) {
             currentDisplay.value += e.target.textContent;
         }
     } else {
+        let sign = e.target.textContent
+
         if(currentDisplay.value != '') {
-            previousDisplay.value = currentDisplay.value 
+            previousDisplay.value = `${currentDisplay.value} ${sign} ` 
             currentDisplay.value = ''
         }
     }
@@ -88,6 +90,17 @@ function updateDisplay(e) {
 
 // equals
 function output() {
+    // change the previous display
+    if(operator === 'add') {
+        previousDisplay.value += currentDisplay.value;
+    } else if (operator === 'subtract') {
+        previousDisplay.value += currentDisplay.value;
+    } else if (operator === 'multiply') {
+        previousDisplay.value += currentDisplay.value;
+    } else {
+        previousDisplay.value += currentDisplay.value;
+    }
+
     let a = parseFloat(previousDisplay.value);
     let b = parseFloat(currentDisplay.value);
     let operationResult = operate(operator, a, b);
@@ -103,6 +116,3 @@ function deleteEntry() {
     let currentDisplayArr = currentDisplay.value.split('')
     currentDisplay.value = currentDisplayArr.slice(0, -1).join('');
 }
-
-
-
