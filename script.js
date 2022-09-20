@@ -10,6 +10,7 @@ const equalsBtn = document.querySelector('#equals')
 // displays
 const previousDisplay = document.querySelector('#previous');
 const currentDisplay = document.querySelector('#current');
+let currentDisplayValues = [];
 
 // event listeners
 allClear.addEventListener('click', clearOutput);
@@ -71,34 +72,37 @@ function setOperator(e) {
 }
 function updateDisplay(e) {
     if(e.target.className === 'numbers button') {
-        if(currentDisplay.textContent === '0' || currentDisplay.textContent === '00' || currentDisplay.textContent === '') {
-            currentDisplay.textContent = e.target.textContent;
+        if(currentDisplay.value === '') {
+            currentDisplay.value = e.target.textContent;
+
         } else {
-            currentDisplay.textContent += e.target.textContent;
+            currentDisplay.value += e.target.textContent;
+            console.log(e.target.textContent);
         }
     } else {
-        previousDisplay.textContent = currentDisplay.textContent 
-        currentDisplay.textContent = ''
-
+        if(currentDisplay.value != '') {
+            previousDisplay.value = currentDisplay.value 
+            currentDisplay.value = ''
+        }
     }
 }
 
 // equals
 function output() {
-    let a = Number(previousDisplay.textContent);
-    let b = Number(currentDisplay.textContent);
+    let a = Number(previousDisplay.value);
+    let b = Number(currentDisplay.value);
     let operationResult = operate(operator, a, b);
-    currentDisplay.textContent = operationResult;
+    currentDisplay.value = operationResult;
 }
 // all clear
 function clearOutput() {
-    previousDisplay.textContent = ''
-    currentDisplay.textContent = ''
+    previousDisplay.value = ''
+    currentDisplay.value = ''
 }
 // delete
 function deleteEntry() {
-    let currentDisplayArr = currentDisplay.textContent.split('')
-    currentDisplay.textContent = currentDisplayArr.slice(0, -1).join('');
+    let currentDisplayArr = currentDisplay.value.split('')
+    currentDisplay.value = currentDisplayArr.slice(0, -1).join('');
 }
 
 
