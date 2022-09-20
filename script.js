@@ -39,7 +39,6 @@ function divide(a, b) {
 
 function operate(operator, a, b) {
     if(b != '' && a != '' || b === 0) {
-        console.log(typeof a, typeof b); // check here
         if(operator === 'add') {
             return add(a, b);
         } else if (operator === 'subtract') {
