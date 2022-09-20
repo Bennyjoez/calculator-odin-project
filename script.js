@@ -10,6 +10,7 @@ const equalsBtn = document.querySelector('#equals')
 // displays
 const previousDisplay = document.querySelector('#previous');
 const currentDisplay = document.querySelector('#current');
+let currentDisplayValues = [];
 
 // event listeners
 allClear.addEventListener('click', clearOutput);
@@ -72,11 +73,10 @@ function setOperator(e) {
 }
 function updateDisplay(e) {
     if(e.target.className === 'numbers button') {
-        if(currentDisplay.value === '0' || currentDisplay.value === '00' || currentDisplay.value === '') {
+        if(currentDisplay.value === '') {
             currentDisplay.value = e.target.textContent;
         } else {
             currentDisplay.value += e.target.textContent;
-            console.log(currentDisplay);
         }
     } else {
         if(currentDisplay.value != '') {
