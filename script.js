@@ -84,7 +84,6 @@ function updateDisplay(e) {
             previousDisplay.value = `${currentDisplay.value} ${sign} ` 
             currentDisplay.value = ''
         } else if(previousDisplay.value != '' && currentDisplay.value != '' && e.target.className === 'button operator') {
-            console.log(e.target.className);
             let a = parseFloat(previousDisplay.value.split(' ')[0]);
             let b = parseFloat(currentDisplay.value);
             let previousOperator = previousDisplay.value.split(' ')[1];
