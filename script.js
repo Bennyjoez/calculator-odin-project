@@ -48,12 +48,16 @@ function operate(operator, a, b) {
 }; 
 
 function updateDisplay(e) {
+    // set a and b
+    let a = parseFloat(previousDisplay.value.split(' ')[0]);
+    let b = parseFloat(currentDisplay.value);
     if(e.target.className === 'numbers button') {
-        if(currentDisplay.value === '') {
-            currentDisplay.value = e.target.textContent;
-        } else {
-            currentDisplay.value += e.target.textContent;
-        }
+        // if(currentDisplay.value === '') {
+        //     currentDisplay.value = e.target.textContent;
+        // } else {
+        //     currentDisplay.value += e.target.textContent;
+        // }
+        currentDisplay.value += e.target.textContent;
     } else {
         let sign = e.target.textContent
 
@@ -61,8 +65,8 @@ function updateDisplay(e) {
             previousDisplay.value = `${currentDisplay.value} ${sign} ` 
             currentDisplay.value = ''
         } else if(previousDisplay.value != '' && currentDisplay.value != '' && e.target.className === 'button operator') {
-            let a = parseFloat(previousDisplay.value.split(' ')[0]);
-            let b = parseFloat(currentDisplay.value);
+            // let a = parseFloat(previousDisplay.value.split(' ')[0]);
+            // let b = parseFloat(currentDisplay.value);
             let previousOperator = previousDisplay.value.split(' ')[1];
             
             if(previousOperator === '+') {
@@ -98,6 +102,7 @@ function updateDisplay(e) {
 // equals
 function output() {
     // change the previous display
+
     let previousDisplayOperator = previousDisplay.value.split(' ')[1];
     if(previousDisplayOperator === '+') {
         operator = 'add';
@@ -115,11 +120,12 @@ function output() {
 
     let a = parseFloat(previousDisplay.value);
     let b = parseFloat(currentDisplay.value);
-    console.log(a, b);
     let operationResult = operate(operator, a, b);
     currentDisplay.value = operationResult;
-    
+
+    operationButtons.forEach(button => button.addEventListener('click', updateDisplay))
 }
+
 // all clear
 function clearOutput() {
     previousDisplay.value = ''
