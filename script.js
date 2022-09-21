@@ -80,9 +80,41 @@ function updateDisplay(e) {
     } else {
         let sign = e.target.textContent
 
-        if(currentDisplay.value != '') {
+        if(currentDisplay.value != '' && previousDisplay.value === '') {
             previousDisplay.value = `${currentDisplay.value} ${sign} ` 
             currentDisplay.value = ''
+        } else if(previousDisplay.value != '' && currentDisplay.value != '' && e.target.className === 'button operator') {
+            console.log(e.target.className);
+            let a = parseFloat(previousDisplay.value.split(' ')[0]);
+            let b = parseFloat(currentDisplay.value);
+            let previousOperator = previousDisplay.value.split(' ')[1];
+            
+            if(previousOperator === '+') {
+                operator = 'add';
+                previousDisplay.value = `${operate(operator, a, b)} ${sign} `
+                currentDisplay.value = ''
+                a = ''
+                b = ''
+            } else if(previousOperator === '-') {
+                operator = 'subtract'
+                previousDisplay.value = `${operate(operator, a, b)} ${sign} `
+                currentDisplay.value = ''
+                a = ''
+                b = ''
+            } else if(previousOperator === 'x') {
+                operator = 'multiply'
+                previousDisplay.value = `${operate(operator, a, b)} ${sign} `
+                currentDisplay.value = ''
+                a = ''
+                b = ''
+            } else {
+                operator = 'divide'
+                previousDisplay.value = `${operate(operator, a, b)} ${sign} `
+                currentDisplay.value = ''
+                a = ''
+                b = ''
+            }
+            
         }
     }
 }
