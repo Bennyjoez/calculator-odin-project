@@ -121,13 +121,18 @@ function updateDisplay(e) {
 // equals
 function output() {
     // change the previous display
-    if(operator === 'add') {
+    let previousDisplayOperator = previousDisplay.value.split(' ')[1];
+    if(previousDisplayOperator === '+') {
+        operator = 'add';
         previousDisplay.value += currentDisplay.value;
-    } else if (operator === 'subtract') {
+    } else if (previousDisplayOperator === '-') {
+        operator = 'subtract';
         previousDisplay.value += currentDisplay.value;
-    } else if (operator === 'multiply') {
+    } else if (previousDisplayOperator === 'x') {
+        operator = 'multiply';
         previousDisplay.value += currentDisplay.value;
     } else {
+        operator = 'divide'
         previousDisplay.value += currentDisplay.value;
     }
 
