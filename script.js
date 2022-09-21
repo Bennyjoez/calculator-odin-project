@@ -15,10 +15,10 @@ let currentDisplayValues = [];
 // event listeners
 allClear.addEventListener('click', clearOutput);
 deleteBtn.addEventListener('click', deleteEntry);
-addBtn.addEventListener('click', setOperator);
-subtractBtn.addEventListener('click', setOperator);
-divideBtn.addEventListener('click', setOperator);
-multiplyBtn.addEventListener('click', setOperator);
+addBtn.addEventListener('click', updateDisplay);
+subtractBtn.addEventListener('click', updateDisplay);
+divideBtn.addEventListener('click', updateDisplay);
+multiplyBtn.addEventListener('click', updateDisplay);
 equalsBtn.addEventListener('click', output);
 numberButtons.forEach(button => button.addEventListener('click', updateDisplay));
 
@@ -53,23 +53,23 @@ function operate(operator, a, b) {
     }
 }; 
 
-function setOperator(e) {
-    if(this.textContent === '-') {
-        operator = 'subtract';
-        updateDisplay(e);
-    } else if(this.textContent === '+') {
-        operator = 'add';
-        updateDisplay(e);
-    } else if (this.textContent === 'x') {
-        operator = 'multiply';
-        updateDisplay(e);
-    } else if(this.textContent === '÷'){
-        operator = 'divide';
-        updateDisplay(e);
-    } else {
-        console.log('Error');
-    }
-}
+// function setOperator(e) {
+//     if(this.textContent === '-') {
+//         operator = 'subtract';
+//         updateDisplay(e);
+//     } else if(this.textContent === '+') {
+//         operator = 'add';
+//         updateDisplay(e);
+//     } else if (this.textContent === 'x') {
+//         operator = 'multiply';
+//         updateDisplay(e);
+//     } else if(this.textContent === '÷'){
+//         operator = 'divide';
+//         updateDisplay(e);
+//     } else {
+//         console.log('Error');
+//     }
+// }
 function updateDisplay(e) {
     if(e.target.className === 'numbers button') {
         if(currentDisplay.value === '') {
@@ -138,8 +138,10 @@ function output() {
 
     let a = parseFloat(previousDisplay.value);
     let b = parseFloat(currentDisplay.value);
+    console.log(a, b);
     let operationResult = operate(operator, a, b);
     currentDisplay.value = operationResult;
+    
 }
 // all clear
 function clearOutput() {
