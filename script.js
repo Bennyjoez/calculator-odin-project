@@ -40,7 +40,11 @@ function operate(operator, a, b) {
         } else if (operator === 'multiply') {
             return multiply(a, b);
         } else if (operator === 'divide') {
-            return divide(a, b);
+            if(b === 0) {
+                alert('Cannot divide a number by zero!!')
+            } else {
+                return divide(a, b);
+            }
         }
     } else {
         alert(`Please enter a value to ${operator}`)
