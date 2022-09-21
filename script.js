@@ -60,8 +60,6 @@ function updateDisplay(e) {
             previousDisplay.value = `${currentDisplay.value} ${sign} ` 
             currentDisplay.value = ''
         } else if(previousDisplay.value != '' && currentDisplay.value != '' && previousDisplay.value.split(' ').length === 2 && e.target.className === 'button operator') {
-            // let a = parseFloat(previousDisplay.value.split(' ')[0]);
-            // let b = parseFloat(currentDisplay.value);
             let previousOperator = previousDisplay.value.split(' ')[1];
             
             if(previousOperator === '+') {
