@@ -47,23 +47,6 @@ function operate(operator, a, b) {
     }
 }; 
 
-// function setOperator(e) {
-//     if(this.textContent === '-') {
-//         operator = 'subtract';
-//         updateDisplay(e);
-//     } else if(this.textContent === '+') {
-//         operator = 'add';
-//         updateDisplay(e);
-//     } else if (this.textContent === 'x') {
-//         operator = 'multiply';
-//         updateDisplay(e);
-//     } else if(this.textContent === '÷'){
-//         operator = 'divide';
-//         updateDisplay(e);
-//     } else {
-//         console.log('Error');
-//     }
-// }
 function updateDisplay(e) {
     if(e.target.className === 'numbers button') {
         if(currentDisplay.value === '') {
