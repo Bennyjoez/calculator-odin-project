@@ -18,8 +18,11 @@ body {
 
 .container{
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     height: 80vh;
-    width: minmax(500px, 800px);
+    max-width: 680px;
+    min-width: 500px;
     padding: 3px;
     border-radius: 5px;
     border: 3px solid black;
@@ -28,22 +31,24 @@ body {
 
 #display {
     height: 30%;
+    width: 100%;
     flex-direction: column;
 }
 
 #display #previous, #current {
-    height: 80px;
+    height: 49%;
+    width: 100%;
     font-size: 1.5rem;
     text-align: end;
-    padding: 5px;
+    padding-right: 25px;
 
 }
 
 #buttons {
     flex-direction: row;
     flex-wrap: wrap;
-    height: 700px;
-    width: 658px;
+    height: 70%;
+    width: 99%;
     justify-content: center;
     align-items: center;
 
@@ -66,4 +71,29 @@ body {
 
 .button:hover {
     cursor: pointer;
+}
+
+@media (max-width: 600px) {
+    .container {
+        min-width: 400px;
+        height: fit-content;
+    }
+    
+    #display {
+        min-height: 20vh;
+    }
+
+    #display #previous, #current {
+        height: calc(20vh / 1.9);
+    }
+
+    #buttons {
+        width: fit-content;
+    }
+    .button {
+        height: calc(2vh + 30px);
+        width: calc(1vw + 20px);
+        font-size: calc(1vw + 20px);
+        padding: auto;
+    }
 }
