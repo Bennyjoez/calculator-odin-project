@@ -53,6 +53,7 @@ function operate(operator, a, b) {
 
 function updateDisplay(e) {
     // set a and b
+    currentDisplay.style.color = 'crimson'
     let a = parseFloat(previousDisplay.value.split(' ')[0]);
     let b = parseFloat(currentDisplay.value);
     let previousDisplayEntriesArr = previousDisplay.value.split(' ').filter(each => /\S/.test(each));
@@ -101,7 +102,6 @@ function updateDisplay(e) {
 // equals
 function output() {
     // change the previous display
-
     let previousDisplayOperator = previousDisplay.value.split(' ')[1];
     if(previousDisplayOperator === '+') {
         operator = 'add';
@@ -121,6 +121,7 @@ function output() {
     let b = parseFloat(currentDisplay.value);
     let operationResult = operate(operator, a, b);
     currentDisplay.value = operationResult;
+    currentDisplay.style.color = 'green'
 
     operationButtons.forEach(button => button.addEventListener('click', updateDisplay))
 }
