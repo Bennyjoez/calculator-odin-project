@@ -1,12 +1,9 @@
 // Button 
 const allClear = document.getElementById('clear');
 const deleteBtn = document.querySelector('#delete');
-const addBtn = document.querySelector('#add');
-const subtractBtn = document.querySelector('#subtract');
-const multiplyBtn = document.querySelector('#multiply');
-const divideBtn = document.querySelector('#divide');
-const numberButtons = document.querySelectorAll('.numbers');
 const equalsBtn = document.querySelector('#equals')
+const numberButtons = document.querySelectorAll('.numbers');
+const operationButtons = document.querySelectorAll('.operator');
 // displays
 const previousDisplay = document.querySelector('#previous');
 const currentDisplay = document.querySelector('#current');
@@ -15,11 +12,8 @@ let currentDisplayValues = [];
 // event listeners
 allClear.addEventListener('click', clearOutput);
 deleteBtn.addEventListener('click', deleteEntry);
-addBtn.addEventListener('click', updateDisplay);
-subtractBtn.addEventListener('click', updateDisplay);
-divideBtn.addEventListener('click', updateDisplay);
-multiplyBtn.addEventListener('click', updateDisplay);
 equalsBtn.addEventListener('click', output);
+operationButtons.forEach(button => button.addEventListener('click', updateDisplay));
 numberButtons.forEach(button => button.addEventListener('click', updateDisplay));
 
 let operator;
