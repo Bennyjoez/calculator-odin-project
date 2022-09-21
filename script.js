@@ -60,7 +60,11 @@ function updateDisplay(e) {
     let sign = e.target.textContent
 
     if(e.target.className === 'numbers button') {
-        currentDisplay.value += e.target.textContent;
+        if(e.target.textContent === '.' && currentDisplay.value.split('').includes('.') === false) {
+            currentDisplay.value += e.target.textContent;
+        } else if(e.target.textContent != '.') {
+            currentDisplay.value += e.target.textContent;
+        }
     } else {
         if(currentDisplay.value != '' && previousDisplay.value === '') {
             previousDisplay.value = `${currentDisplay.value} ${sign} ` 
