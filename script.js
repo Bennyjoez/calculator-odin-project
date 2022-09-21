@@ -53,13 +53,72 @@ function operate(operator, a, b) {
 
 function updateDisplay(e) {
     // set a and b
-    currentDisplay.style.color = 'crimson'
     let a = parseFloat(previousDisplay.value.split(' ')[0]);
     let b = parseFloat(currentDisplay.value);
+    currentDisplay.style.color = 'crimson'
     let previousDisplayEntriesArr = previousDisplay.value.split(' ').filter(each => /\S/.test(each));
+    let digitsArr = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '.'];
+    let operatorsArr = ['+', '-', '*'];
+    
     let sign = e.target.textContent
-
-    if(e.target.className === 'numbers button') {
+    if(operatorsArr.includes(e.key)) {
+        if(e.key === '+' || e.key === '-') {
+            sign = e.key;
+        } else {
+            sign = 'x'
+        }
+    }
+    
+    if(digitsArr.includes(e.key) || operatorsArr.includes(e.key) || e.key === 'Enter' || e.key === 'Backspace'){
+        if(digitsArr.includes(e.key)) {
+            currentDisplay.value += e.key;
+        } else if (operatorsArr.includes(e.key) && previousDisplay.value === '') {
+            if(e.key === '+' || e.key === '-') {
+                previousDisplay.value = `${currentDisplay.value} ${e.key} `;
+                currentDisplay.value = '';
+            } else if(e.key === '*') {
+                previousDisplay.value = `${currentDisplay.value} x `;
+                currentDisplay.value = '';
+            }
+        } else if (operatorsArr.includes(e.key) && previousDisplayEntriesArr.length < 3 && previousDisplayEntriesArr.length > 0) {
+            let previousOperator = previousDisplay.value.split(' ')[1];
+            if(previousOperator === '+') {
+                operator = 'add';
+                previousDisplay.value = `${operate(operator, a, b)} ${sign} `
+                currentDisplay.value = ''
+                a = ''
+                b = ''
+            } else if(previousOperator === '-') {
+                operator = 'subtract'
+                previousDisplay.value = `${operate(operator, a, b)} ${sign} `
+                currentDisplay.value = ''
+                a = ''
+                b = ''
+            } else if(previousOperator === 'x') {
+                operator = 'multiply'
+                previousDisplay.value = `${operate(operator, a, b)} ${sign} `
+                currentDisplay.value = ''
+                a = ''
+                b = ''
+            } else {
+                operator = 'divide'
+                previousDisplay.value = `${operate(operator, a, b)} ${sign} `
+                currentDisplay.value = ''
+                a = ''
+                b = ''
+            };
+        }else if(operatorsArr.includes(e.key) && previousDisplayEntriesArr.length === 3){
+            previousDisplay.value = `${currentDisplay.value} ${e.key} `
+            if(e.key === '*') {
+                previousDisplay.value = `${currentDisplay.value} x `
+            }
+            currentDisplay.value = ''
+        }else if(e.key === 'Enter') {
+            output()
+        } else if(e.key === 'Backspace') {
+            deleteEntry();
+        }
+    } else if(e.target.className === 'numbers button') {
         if(e.target.textContent === '.' && currentDisplay.value.split('').includes('.') === false) {
             currentDisplay.value += e.target.textContent;
         } else if(e.target.textContent != '.') {
@@ -140,3 +199,5 @@ function deleteEntry() {
     let currentDisplayArr = currentDisplay.value.split('')
     currentDisplay.value = currentDisplayArr.slice(0, -1).join('');
 }
+
+document.addEventListener('keyup', updateDisplay);
