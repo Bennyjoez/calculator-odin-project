@@ -51,17 +51,20 @@ function updateDisplay(e) {
     // set a and b
     let a = parseFloat(previousDisplay.value.split(' ')[0]);
     let b = parseFloat(currentDisplay.value);
+    let previousDisplayEntriesArr = previousDisplay.value.split(' ').filter(each => /\S/.test(each));
+    let sign = e.target.textContent
+
     if(e.target.className === 'numbers button') {
         currentDisplay.value += e.target.textContent;
     } else {
-        let sign = e.target.textContent
-
         if(currentDisplay.value != '' && previousDisplay.value === '') {
             previousDisplay.value = `${currentDisplay.value} ${sign} ` 
             currentDisplay.value = ''
-        } else if(previousDisplay.value != '' && currentDisplay.value != '' && previousDisplay.value.split(' ').length === 2 && e.target.className === 'button operator') {
+        } else if(previousDisplayEntriesArr.length === 3 && e.target.className === 'button operator') {
+            previousDisplay.value = `${currentDisplay.value} ${sign} `
+            currentDisplay.value = ''
+        } else if(previousDisplay.value != '' && currentDisplay.value != '' && e.target.className === 'button operator') {
             let previousOperator = previousDisplay.value.split(' ')[1];
-            
             if(previousOperator === '+') {
                 operator = 'add';
                 previousDisplay.value = `${operate(operator, a, b)} ${sign} `
@@ -87,10 +90,9 @@ function updateDisplay(e) {
                 a = ''
                 b = ''
             }
-            
         }
     }
-}
+};
 
 // equals
 function output() {
